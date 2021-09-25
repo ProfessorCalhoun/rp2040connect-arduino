@@ -9,15 +9,14 @@ float yn1 = 0;
 int k = 0;
 
 void setup() {
-  Serial.begin(9600);
-  //wait for serial port to open before code works
-  while (!Serial);
-  
+  Serial.begin(115200);
+   
 }
 
 void loop() {
   // Wait for samples to be read
-  float xn = analogRead(sensorPin);
+  int reading = analogRead(sensorPin);
+  float xn = (float)reading*5/1024; // convert to a voltage
   //Filtering - second order Butterworth
   //5kHz filter, based on 20kHz sampling freq
   /*float b[] = {0.43990085, 0.43990085};
@@ -29,12 +28,24 @@ void loop() {
   /*float b[] = {0.07282051, 0.07282051};
   float a[] = {0.85435899};*/
   //250Hz filter, based on 20kHz sampling freq
-  float b[] = {0.03778605, 0.03778605};
-  float a[] = {0.92442789};
-  float yn = a[1]*yn1 + b[1]*xn + b[2]*xn1;
+  /*float b[] = {0.03778605, 0.03778605};
+  float a[] = {0.92442789};*/
+  //10Hz filter, based on 20kHz sampling freq
+  /*float b[] = {0.00156833, 0.00156833};
+  float a[] = {0.99686333};*/
+  //5Hz filter, based on 20kHz sampling freq
+  float b[] = {0.00078478, 0.00078478};
+  float a[] = {0.99843044};
+  
+  float yn = a[0]*yn1 + b[0]*xn + b[1]*xn1;
 
-
-  if(k % 10 == 0) //send fewer samples as to not mess with sampling frequency
+  //This delay is the main contributor to sampling frequency
+  delayMicroseconds(50);
+  
+  xn1 = xn;
+  yn1 = yn;
+  
+  if(k % 60 == 0) //send fewer samples as to not mess with sampling frequency
   {
     //Print out samples
     Serial.print(2*xn);
@@ -43,9 +54,4 @@ void loop() {
   }
   k = k+1;
       
-  // Make sample rate of main loop something usable for hifi filtering - 20kHz
-  delayMicroseconds(50);
-
-  xn1 = xn;
-  yn1 = yn;
 }

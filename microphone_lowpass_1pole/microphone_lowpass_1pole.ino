@@ -55,9 +55,16 @@ void loop() {
       /*float b[] = {0.07282051, 0.07282051};
       float a[] = {0.85435899};*/
       //250Hz filter, based on 20kHz sampling freq
-      float b[] = {0.03778605, 0.03778605};
-      float a[] = {0.92442789};
-      float yn = a[1]*yn1 + b[1]*xn + b[2]*xn1;
+      /*float b[] = {0.03778605, 0.03778605};
+      float a[] = {0.92442789};*/
+      //10Hz filter, based on 20kHz sampling freq
+      /*float b[] = {0.00156833, 0.00156833};
+      float a[] = {0.99686333};*/
+      //5Hz filter, based on 20kHz sampling freq
+      float b[] = {0.00078478, 0.00078478};
+      float a[] = {0.99843044};
+  
+      float yn = a[0]*yn1 + b[0]*xn + b[1]*xn1;
 
       if(k % 10 == 0) //send fewer samples as to not mess with sampling frequency
       {

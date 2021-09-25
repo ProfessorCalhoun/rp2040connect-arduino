@@ -10,7 +10,7 @@ samplingFreq = 20000; # sampled at ...
 #fcycles = np.fft.fftfreq(len(t),d=1.0/samplingFreq); # the frequencies in cycles/s
 
 # Low-pass filter
-w0 = 2*np.pi*5000; # pole frequency (rad/s)
+w0 = 2*np.pi*5; # pole frequency (rad/s)
 num = w0        # transfer function numerator coefficients
 den = [1,w0]    # transfer function denominator coefficients
 lowPass = signal.TransferFunction(num,den) # Transfer function

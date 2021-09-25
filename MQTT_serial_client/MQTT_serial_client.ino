@@ -1,3 +1,9 @@
+/*
+ * Author: Professor DM Calhoun
+ * Purpose: This code utilizes an Arduino MQTT library and serial string parsing functionality
+ * to demonstrate messaging across multiple devices subscribed to one topic.
+ */
+
 #include <ArduinoMqttClient.h>
 #include <WiFiNINA.h>
 

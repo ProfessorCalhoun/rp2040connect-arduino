@@ -1,2 +1,2 @@
-#define SECRET_SSID "ChraveNet"
-#define SECRET_PASS "July3rd2016"
+#define SECRET_SSID ""
+#define SECRET_PASS ""

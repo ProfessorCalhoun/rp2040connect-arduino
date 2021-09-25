@@ -6,6 +6,7 @@
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
 char ssid[] = SECRET_SSID;        // your network SSID (name)
 char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+char user_name[] = USER_NAME;    // your network password (use for WPA, or use as key for WEP)
 
 WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
@@ -93,7 +94,8 @@ void loop() {
     
         // send message, the Print interface can be used to set the message contents
         mqttClient.beginMessage(topic);
-        mqttClient.print(str);
+        String transmit_message = (String(user_name) + String(": ") + str);
+        mqttClient.print(transmit_message);
         mqttClient.endMessage();
       }
   }
@@ -139,12 +141,12 @@ String getValue(String data, char separator, int index)
 }
 
 void parseMessage(String message){
-   
-  String cmd_message = getValue(message,':',0);
-  String act_message = getValue(message,':',1);
-  String do_message = getValue(message,':',2);
+  String sender = getValue(message,':',0);
+  String cmd_message = getValue(message,':',1);
+  String act_message = getValue(message,':',2);
+  String do_message = getValue(message,':',3);
   
-  if(cmd_message == "CMD"){
+  if(cmd_message == " CMD"){
     //Serial.println("Got into CMD");
     if (act_message == "LEDR"){
       Serial.println("Changing LEDR status!");

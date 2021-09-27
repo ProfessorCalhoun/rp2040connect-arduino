@@ -115,9 +115,9 @@ void loop() {
 void onMqttMessage(int messageSize) {
   String received_message = "";
   // we received a message, print out the topic and contents
-  Serial.println("Message received from '");
+  Serial.print("Message received from '");
   Serial.print(mqttClient.messageTopic());
-  Serial.print(", length ");
+  Serial.print("', length ");
   Serial.print(messageSize);
   Serial.println(" bytes");
 
@@ -129,7 +129,7 @@ void onMqttMessage(int messageSize) {
 
 }
 
-//Function for breaking a string into section based on a parsing character
+//Function for breaking a string into sections based on a parsing character
 String getValue(String data, char separator, int index)
 {
   int found = 0;

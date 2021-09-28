@@ -16,8 +16,9 @@ def on_message_gen(client, userdata, message):
     received_topic = str(message.topic)
     topics = received_topic.split('/')
     author = '{:11.11}'.format(topics[1])
+    sensor = '{:3.3}'.format(topics[2])
     global all_data
-    add_data = "|" + author + "| " + current_time + " |      " + topics[2] + "       |     " + str(message.payload.decode("utf-8")) + "\n"
+    add_data = "|" + author + "| " + current_time + " |      " + sensor + "       |     " + str(message.payload.decode("utf-8")) + "\n"
     all_data = all_data + add_data
     os.system('cls||clear') #clear the terminal window
     print(all_data)

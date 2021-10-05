@@ -5,12 +5,13 @@ import numpy as np
 import math
 
 samplingFreq = 20000; # sampled at ...
+poleFreq = 100;
 #tlims = [0,1]        # in seconds
 #t = np.linspace(tlims[0],tlims[1],(tlims[1]-tlims[0])*samplingFreq)
 #fcycles = np.fft.fftfreq(len(t),d=1.0/samplingFreq); # the frequencies in cycles/s
 
 # Low-pass filter
-w0 = 2*np.pi*5; # pole frequency (rad/s)
+w0 = 2*np.pi*poleFreq; # pole frequency (rad/s)
 num = w0        # transfer function numerator coefficients
 den = [1,w0]    # transfer function denominator coefficients
 lowPass = signal.TransferFunction(num,den) # Transfer function

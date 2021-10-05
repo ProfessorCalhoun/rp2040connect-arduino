@@ -19,20 +19,23 @@ void loop() {
   float xn = (float)reading*5/1024; // convert to a voltage
   //Filtering - first order highpass
   //5kHz filter, based on 20kHz sampling freq
-  /*float b[] = ;
-  float a[] = ;*/
+  /*float b[] = {0.56009915, -0.56009915};
+  float a[] = {0.12019831};*/
   //1kHz filter, based on 20kHz sampling freq
-  /*float b[] = ;
-  float a[] = ;*/
+  /*float b[] = {0.86424475, -0.86424475};
+  float a[] = {0.7284895};*/
   //500Hz filter, based on 20kHz sampling freq
-  /*float b[] = ;
-  float a[] = ;*/
+  /*float b[] = {0.92717949, -0.92717949};
+  float a[] = {0.85435899};*/
   //250Hz filter, based on 20kHz sampling freq
-  /*float b[] = ;
-  float a[] = ;*/
+  /*float b[] = {0.96221395 -0.96221395};
+  float a[] = {0.92442789};*/
+  //100Hz filter, based on 20kHz sampling freq
+  /*float b[] = {0.98453496, -0.98453496};
+  float a[] = {0.96906992};*/
   //10Hz filter, based on 20kHz sampling freq
-  /*float b[] = ;
-  float a[] = ;*/
+  /*float b[] = {0.99843167, -0.99843167};
+  float a[] = {0.99686333};*/
   //5Hz filter, based on 20kHz sampling freq
   float b[] = {0.99921522, -0.99921522};
   float a[] = {0.99843044};

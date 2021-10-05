@@ -30,6 +30,9 @@ void loop() {
   //250Hz filter, based on 20kHz sampling freq
   /*float b[] = {0.03778605, 0.03778605};
   float a[] = {0.92442789};*/
+  //100Hz filter, based on 20kHz sampling freq
+  /*float b[] = {0.01546504, 0.01546504};
+  float a[] = {0.96906992};*/
   //10Hz filter, based on 20kHz sampling freq
   /*float b[] = {0.00156833, 0.00156833};
   float a[] = {0.99686333};*/

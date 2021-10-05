@@ -10,10 +10,10 @@ plt.rcParams.update({"text.usetex": True,"font.family": "sans-serif","font.sans-
 # Generate a signal
 samplingFreq = 1000; # sampled at 1 kHz = 1000 samples / second
 tlims = [0,1]        # in seconds
-signalFreq = [2,50]; # Cycles / second
-signalMag = [1,0.2]; # magnitude of each sine
+signalFreq = [2,10,50,90]; # Cycles / second
+signalMag = [1,0.1,0.5,0.2]; # magnitude of each sine
 t = np.linspace(tlims[0],tlims[1],(tlims[1]-tlims[0])*samplingFreq)
-y = signalMag[0]*np.sin(2*math.pi*signalFreq[0]*t)# + signalMag[1]*np.sin(2*math.pi*signalFreq[1]*t)
+y = signalMag[0]*np.sin(2*math.pi*signalFreq[0]*t) + signalMag[1]*np.sin(2*math.pi*signalFreq[1]*t) + + signalMag[2]*np.sin(2*math.pi*signalFreq[2]*t) + + signalMag[3]*np.sin(2*math.pi*signalFreq[3]*t)
 
 # Compute the Fourier transform
 yhat = np.fft.fft(y);

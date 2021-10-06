@@ -1,3 +1,9 @@
+/*
+ * Author: Professor DM Calhoun
+ * Purpose: This code implements a digital lowpass filter and contains several 
+ * pre-calculated filter configurations.
+ */
+
 #include <WiFiNINA.h>
 //Could use audacity to generate an audio signal
 //Could use sig-gen

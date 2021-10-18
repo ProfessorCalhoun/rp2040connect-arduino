@@ -30,31 +30,26 @@ unsigned long emulated_process_delay = 250;
 volatile int reading = LOW;
 
 void button_isr(){
-  //if we have generated an ISR, proceed to processing further pushes as valid events
-  if (button_isr_flag == !BUTTON_INT_TRIGGERED){
-    button_isr_flag = BUTTON_INT_TRIGGERED;
-  //all events processed below when valid
-  }else{
-    reading = (digitalRead(BUTTON_PIN));
-    // check if last button press occurred sufficiently long ago
-    if (button_state != button_prev){
-      last_debounce = millis();
-    }
+  //ISR not managed by flag/consumption, only by debounce counter
   
-    if ((millis() - last_debounce) > debounce_delay){
-      
-      //check if button was pressed and log a press if last event was not a button press
-      if (reading != button_state){
-        button_state = reading;
-        if (button_state == HIGH){
-          button_count++;
-          //clear ISR flag when event is successfully processed (flag consumed)
-          button_isr_flag = !BUTTON_INT_TRIGGERED;
-        }
+  reading = (digitalRead(BUTTON_PIN));
+  // check if last button press occurred sufficiently long ago
+  if (button_state != button_prev){
+    last_debounce = millis();
+  }
+
+  if ((millis() - last_debounce) > debounce_delay){
+    
+    //check if button was pressed and log a press if last event was not a button press
+    if (reading != button_state){
+      button_state = reading;
+      if (button_state == HIGH){
+        button_count++;
       }
     }
-    button_prev = button_state;  
   }
+  button_prev = button_state;  
+  
 }
 
 void setup() {

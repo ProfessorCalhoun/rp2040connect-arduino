@@ -27,7 +27,7 @@ publish_interval = 30
     
 mqttBroker ="test.mosquitto.org"
 
-client = mqtt.Client("ECE101_Section2_Data_Aggregator")
+client = mqtt.Client("ECE101_Section2_Other_Data_Aggregator")
 client.connect(mqttBroker) 
 
 client.loop_start()

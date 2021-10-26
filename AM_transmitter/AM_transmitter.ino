@@ -1,6 +1,6 @@
 //Arduino Nano only. Outputs PWM at baseband rate with Fc component
 
-const byte ANTENNA = 11;
+const byte ANTENNA = 9;
 int state = 0;
 
 void setup() 

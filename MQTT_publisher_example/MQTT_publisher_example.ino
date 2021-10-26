@@ -20,7 +20,7 @@ MqttClient mqttClient(wifiClient);
 
 const char broker[] = "test.mosquitto.org";
 int        port     = 1883;
-const char topic[]  = "ece101_section2_sensors/prof_c/adc";
+const char topic[]  = "ece101_section2_sensors/guy1/adc";
 
 //set interval for sending messages (milliseconds)
 const long interval = 8000;

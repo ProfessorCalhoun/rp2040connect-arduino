@@ -27,6 +27,11 @@ void loop() {
   digitalWrite(BCD_C,(counter & 0x04));
   digitalWrite(BCD_D,(counter & 0x08));
   delay(1000);
-  counter++;
+  //reset the count when necessary rather than roll over
+  if (counter == 9){
+    counter = 0;
+  }else{
+    counter++;
+  }
 
 }

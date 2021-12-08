@@ -1,0 +1,77 @@
+/*
+ * This is a block comment!
+ * Every code/document/file should have a description that includes its author and purpose...
+ * Author: Professor DM Calhoun
+ * Purpose: This code combines serial output functionality with a sequence of RGB LED blinking
+ */
+
+// This is a line comment!
+
+// Compiler directives go at the top of your file. These are references to other files and libraries that the code uses to achieve its functionality.
+#include <WiFiNINA.h>
+// Variables may also go at the top of your file. 
+byte state = 0x01;
+
+#define LED1R 13
+#define LED1G 12
+#define LED1B 11
+
+#define LED2R 10
+#define LED2G 9
+#define LED2B 8
+
+/*
+ * When it comes to this type of programming, operations implemented in your code (function calls, arithmetic, pin toggling, etc.) execute serially. 
+ * This "setup" function is the first portion of your code to execute. It is meant to do as described: set up any necessary items to make the main body of our code execute successfully.
+ */
+void setup() {
+  //Sets pin mode to outputs for the three WiFiNiNA pins that control the RGB LED
+  pinMode(LED1R, OUTPUT);
+  pinMode(LED1G, OUTPUT);
+  pinMode(LED1B, OUTPUT);
+  pinMode(LED2R, OUTPUT);
+  pinMode(LED2G, OUTPUT);
+  pinMode(LED2B, OUTPUT);
+
+  //Initializes the serial interface with a baud rate. 
+  Serial.begin(9600);
+}
+
+// put your main code here, to run repeatedly:
+void loop() {
+
+  Serial.println("Hello my name is Prof. C and I have tested this board!");
+  
+  //use bitwise AND here to mask the "state" variable
+  if(state & 0x01){
+    digitalWrite(LED1R,HIGH);
+    digitalWrite(LED2G,HIGH);
+  }else{
+    digitalWrite(LED1R,LOW);
+    digitalWrite(LED2G,LOW);
+  }
+  if(state & 0x02){
+    digitalWrite(LED1G,HIGH);
+    digitalWrite(LED2B,HIGH);
+  }else{
+    digitalWrite(LED1G,LOW);
+    digitalWrite(LED2B,LOW);
+  }
+  if(state & 0x04){
+    digitalWrite(LED1B,HIGH);
+    digitalWrite(LED2R,HIGH);
+  }else{
+    digitalWrite(LED1B,LOW);
+    digitalWrite(LED2R,LOW);
+  }
+  
+  Serial.print("State: ");
+  Serial.println(state);
+  state = state+0x01;
+  
+  if (state == 0x08){
+    state = 0x01;
+  }
+  delay(500);
+  
+}

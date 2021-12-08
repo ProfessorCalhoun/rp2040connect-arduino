@@ -1,5 +1,5 @@
 //We always have to include the library
-#include "LedControl.h"
+#include <LedControl.h>
 
 /*
  Now we need a LedControl to work with.
@@ -12,7 +12,7 @@
 LedControl lc=LedControl(11,13,9,1);
 
 /* we always wait a bit between updates of the display */
-unsigned long delaytime=10;
+unsigned long delaytime=5;
 
 void setup() {
   /*
